@@ -55,6 +55,7 @@ class TestRunner {
     }
     this.filePath = currentDocument.fileName
       .replace(currentWorkspacePath.uri.fsPath, "")
+      .replace(config.get("python.djangoTestRunner.testRoot"), "")
       .replace(".py", "")
       .replace(/\//g, ".")
       .replace(/\\/g, ".")
@@ -136,8 +137,8 @@ class TestRunner {
         configuration.get("python.pythonPath"),
         "./manage.py",
         "test",
-        configuration.get("python.djangoTestRunner.flags"),
-        testPath
+        testPath,
+        configuration.get("python.djangoTestRunner.flags")
       ];
       terminal.sendText(cmds.join(" "));
     }
